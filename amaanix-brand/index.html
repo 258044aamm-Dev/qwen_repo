@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaanix - The Standard Has a Name</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Proza+Libre:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/shock-surgent" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --teal: #00B5B8;
+            --white: #FFFFFF;
+            --anthracite: #27282C;
+            --black-wash: #0D0D0D;
+            --coco-black: #1E1E1C;
+            
+            --font-poppins: 'Poppins', sans-serif;
+            --font-playfair: 'Playfair Display', serif;
+            --font-proza: 'Proza Libre', sans-serif;
+            --font-shock: 'Shock Surgent', cursive;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-poppins);
+            color: var(--anthracite);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-family: var(--font-shock);
+            font-size: 2rem;
+            color: var(--teal);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-poppins);
+            color: var(--anthracite);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: var(--teal);
+            color: var(--white) !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 181, 184, 0.3);
+        }
+        
+        .nav-cta::after {
+            display: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+            background: linear-gradient(135deg, var(--white) 0%, #f0ffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 181, 184, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-tagline {
+            font-family: var(--font-playfair);
+            font-size: 1.2rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: var(--font-playfair);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--anthracite);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-proza);
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--teal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 181, 184, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--anthracite);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--anthracite);
+            border-radius: 50px;
+            font-family: var(--font-poppins);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--anthracite);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-tag {
+            font-family: var(--font-poppins);
+            color: var(--teal);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-family: var(--font-playfair);
+            font-size: 3rem;
+            color: var(--anthracite);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-description {
+            font-family: var(--font-proza);
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 181, 184, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--teal);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 181, 184, 0.15);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 181, 184, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--teal);
+        }
+        
+        .feature-icon i {
+            font-size: 2rem;
+        }
+        
+        .feature-title {
+            font-family: var(--font-playfair);
+            font-size: 1.5rem;
+            color: var(--anthracite);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            font-family: var(--font-proza);
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #f0ffff 0%, var(--white) 100%);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: var(--font-playfair);
+            font-size: 3rem;
+            color: var(--anthracite);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            font-family: var(--font-proza);
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-family: var(--font-playfair);
+            font-size: 2.5rem;
+            color: var(--teal);
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-family: var(--font-poppins);
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            display: block;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--teal) 0%, #00999c 100%);
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-section h2 {
+            font-family: var(--font-playfair);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-family: var(--font-proza);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+        
+        .btn-white {
+            background: var(--white);
+            color: var(--teal);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-poppins);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--anthracite);
+            color: var(--white);
+            padding: 80px 5% 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand .logo {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-brand p {
+            font-family: var(--font-proza);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--teal);
+            transform: translateY(-3px);
+        }
+        
+        .footer-column h4 {
+            font-family: var(--font-poppins);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            font-family: var(--font-poppins);
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--teal);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-family: var(--font-poppins);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">AMAANIX</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#get-started" class="nav-cta">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-tagline">Above the Noise</p>
+            <h1 class="hero-title">The Standard Has a Name.</h1>
+            <p class="hero-subtitle">Built on unwavering integrity and genuine sincerity, Amaanix delivers trustworthy solutions that inspire confidence, strengthen focus, and support long-term growth.</p>
+            <div class="hero-buttons">
+                <a href="#get-started" class="btn-primary">
+                    Start Your Journey
+                    <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#learn-more" class="btn-secondary">
+                    Learn More
+                    <i data-lucide="play-circle"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-tag">Why Choose Amaanix</span>
+            <h2 class="section-title">Trusted. Disciplined. Delivered.</h2>
+            <p class="section-description">We're not here to chase trends — we're here to set standards and build a global movement grounded in trust, accountability, and disciplined execution.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="shield-check" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Unwavering Integrity</h3>
+                <p class="feature-description">Every solution we provide is built on a foundation of honesty and transparency, ensuring you can trust us completely.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="target" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Disciplined Excellence</h3>
+                <p class="feature-description">We maintain the highest standards through meticulous attention to detail and consistent quality delivery.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="users-three" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Customer First</h3>
+                <p class="feature-description">You're the hero of your story. We provide the clarity, discipline, and dependable excellence you seek.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="trending-up" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Long-term Growth</h3>
+                <p class="feature-description">Our solutions are designed for sustainable success, helping you build lasting value over time.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="lightbulb" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Transformative Impact</h3>
+                <p class="feature-description">We go beyond expectations to deliver experiences that truly transform your business and life.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i data-phosphor="globe" style="font-size: 2rem;"></i>
+                </div>
+                <h3 class="feature-title">Global Recognition</h3>
+                <p class="feature-description">Join a worldwide community that recognizes Amaanix as the most trusted brand for genuine solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <span class="section-tag">Our Story</span>
+                <h2>Built Different</h2>
+                <p>Amaanix was created in a world full of noise and uncertainty to restore trust as the foundation of every meaningful experience. We believe the customer is the hero, seeking clarity, discipline, and dependable excellence.</p>
+                <p>Built on unwavering integrity and genuine sincerity, Amaanix delivers trustworthy solutions that inspire confidence, strengthen focus, and support long-term growth.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="300" fill="#f0ffff"/>
+                    <circle cx="200" cy="150" r="80" fill="#00B5B8" opacity="0.2"/>
+                    <circle cx="200" cy="150" r="60" fill="#00B5B8" opacity="0.4"/>
+                    <circle cx="200" cy="150" r="40" fill="#00B5B8" opacity="0.6"/>
+                    <text x="200" y="155" text-anchor="middle" fill="#00B5B8" font-family="Poppins" font-size="20" font-weight="600">AMAANIX</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="get-started">
+        <h2>Life Deserves Better.</h2>
+        <p>Join thousands of customers who have discovered the power of trustworthy solutions. Start your journey with Amaanix today and experience the difference that integrity and sincerity make.</p>
+        <a href="#contact" class="btn-white">
+            Get Started Now
+            <i data-lucide="arrow-right"></i>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">AMAANIX</a>
+                <p>To be the world's most trusted brand, recognized globally for unwavering integrity, genuine sincerity, and transformative impact.</p>
+                <div class="social-links">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Consulting</a></li>
+                    <li><a href="#">Solutions</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">@amaanixofficial</a></li>
+                    <li><a href="#">@amaanix</a></li>
+                    <li><a href="#">hello@amaanix.com</a></li>
+                    <li><a href="#">+1 (555) 123-4567</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Amaanix. All rights reserved. | Trusted. Disciplined. Delivered.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero animations
+        gsap.from('.hero-tagline', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.hero-title', {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.2,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.hero-subtitle', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.4,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.hero-buttons', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.6,
+            ease: 'power3.out'
+        });
+        
+        // Feature cards animation
+        gsap.utils.toArray('.feature-card').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                delay: index * 0.1,
+                ease: 'power3.out'
+            });
+        });
+        
+        // About section animation
+        gsap.from('.about-text', {
+            scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%'
+            },
+            duration: 1,
+            x: -50,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.about-image', {
+            scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%'
+            },
+            duration: 1,
+            x: 50,
+            opacity: 0,
+            delay: 0.3,
+            ease: 'power3.out'
+        });
+        
+        // Stats animation
+        gsap.utils.toArray('.stat-number').forEach((stat) => {
+            gsap.from(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 85%'
+                },
+                duration: 1.5,
+                scale: 0.5,
+                opacity: 0,
+                ease: 'back.out(1.7)'
+            });
+        });
+        
+        // CTA section animation
+        gsap.from('.cta-section h2', {
+            scrollTrigger: {
+                trigger: '.cta-section',
+                start: 'top 80%'
+            },
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.cta-section p', {
+            scrollTrigger: {
+                trigger: '.cta-section',
+                start: 'top 80%'
+            },
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.2,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.btn-white', {
+            scrollTrigger: {
+                trigger: '.cta-section',
+                start: 'top 80%'
+            },
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.4,
+            ease: 'power3.out'
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
