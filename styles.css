@@ -373,9 +373,16 @@
         }
         .icon-btn:hover {
             background-color: var(--bg-light);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .icon-btn i {
             width: 20px; height: 20px;
+            transition: all 0.3s ease;
+        }
+        .icon-btn:hover i {
+            transform: scale(1.1);
         }
         .cart-count {
             position: absolute; top: -8px; right: -8px;
