@@ -367,6 +367,15 @@
         .icon-btn {
             font-size: 20px; color: var(--text-dark); cursor: pointer;
             position: relative; background: none; border: none; font-family: var(--font-body);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; padding: 0; border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .icon-btn:hover {
+            background-color: var(--bg-light);
+        }
+        .icon-btn i {
+            width: 20px; height: 20px;
         }
         .cart-count {
             position: absolute; top: -8px; right: -8px;
@@ -379,7 +388,10 @@
             color: var(--text-dark); margin-right: 15px; background: none; border: none;
         }
 
-        .profile-dropdown { position: relative; }
+        .profile-dropdown { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+        .profile-dropdown i {
+            width: 20px; height: 20px;
+        }
         .profile-menu {
             position: absolute; top: 100%; right: 0;
             background: var(--white); box-shadow: var(--shadow-hover);
@@ -392,10 +404,12 @@
         .profile-menu a:hover { background-color: var(--bg-light); color: var(--primary); text-decoration: none; }
 
         .wishlist-icon { display: none; }
-        @media (min-width: 769px) { .wishlist-icon { display: inline-flex; } }
+        @media (min-width: 769px) { 
+            .wishlist-icon { display: inline-flex !important; } 
+        }
         .mobile-wishlist-icon { display: none; }
         @media (max-width: 768px) {
-            .mobile-wishlist-icon { display: inline-flex; }
+            .mobile-wishlist-icon { display: inline-flex !important; }
             .wishlist-icon { display: none !important; }
         }
 
@@ -671,6 +685,10 @@
             .products-grid { grid-template-columns: repeat(3, 1fr); }
             .trust-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .header-icons { gap: 15px; }
+            .icon-btn { width: 38px; height: 38px; }
+            .icon-btn i { width: 19px; height: 19px; }
+            .profile-dropdown i { width: 19px; height: 19px; }
         }
 
         @media (max-width: 768px) {
@@ -679,7 +697,10 @@
             .trust-strip { display: none; }
             .header-inner { justify-content: center; position: relative; }
             .mobile-toggle { position: absolute; left: 20px; }
-            .header-icons { position: absolute; right: 20px; }
+            .header-icons { position: absolute; right: 20px; gap: 12px; }
+            .icon-btn { width: 36px; height: 36px; }
+            .icon-btn i { width: 18px; height: 18px; }
+            .profile-dropdown i { width: 18px; height: 18px; }
             .header-icons .icon-btn:last-child { display: none; }
             .profile-menu { display: none; opacity: 1; visibility: visible; transform: translateY(0); }
             .profile-dropdown.active .profile-menu { display: block; }
