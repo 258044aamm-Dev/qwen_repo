@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAANIX — Home</title>
+    
+    <!-- Issue 13: SEO Meta Tags Added -->
+    <meta name="description" content="Amaanix offers thoughtfully curated products built on integrity and trust. Shop premium home, office, and lifestyle essentials.">
+    <meta property="og:title" content="AMAANIX — Where Focus Meets Freedom">
+    <meta property="og:description" content="Discover thoughtfully curated essentials for every dimension of modern living. Simple, seamless, and reliable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.amaanix.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- Icons: Font Awesome (Phosphor removed - Issue 14) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- Issue 23: SEO Schema Markup - Valid JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.amaanix.com/#organization",
+          "name": "AMAANIX",
+          "url": "https://www.amaanix.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.amaanix.com/logo.png",
+            "width": "200",
+            "height": "60"
+          },
+          "sameAs": [
+            "https://www.facebook.com/amaanix",
+            "https://www.instagram.com/amaanix",
+            "https://twitter.com/amaanix"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.amaanix.com/#website",
+          "url": "https://www.amaanix.com",
+          "name": "AMAANIX",
+          "publisher": {
+            "@id": "https://www.amaanix.com/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.amaanix.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.amaanix.com/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.amaanix.com"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+</head>
+<body>
+
+    <!-- Issue 9: Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Issue 6: Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Section 1: Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="container position-relative full-width">
+            <div class="announcement-ticker">
+                <div class="announcement-track" id="announcementTrack">
+                    <div class="announcement-item">
+                        <span>🚚</span>
+                        <a href="#shipping">Free Shipping on Orders $50+</a>
+                    </div>
+                    <div class="announcement-item">
+                        <span>🎁</span>
+                        <a href="#welcome">10% Welcome Discount</a>
+                    </div>
+                </div>
+            </div>
+            <button class="close-announcement" id="closeAnnouncementBtn" aria-label="Close announcement">✕</button>
+        </div>
+    </div>
+
+    <!-- Section 2: Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="#" class="logo">AMAANIX</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#featured-products" class="nav-link">Shop</a></li>
+                    <li class="nav-item"><a href="#brand-story" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Support</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <button class="icon-btn" id="searchTrigger" aria-label="Open search"><i class="fas fa-search"></i></button>
+                <button class="icon-btn mobile-wishlist-icon" title="Wishlist" aria-label="Open wishlist"><i class="far fa-heart"></i></button>
+                <div class="icon-btn profile-dropdown">
+                    <i class="fas fa-user"></i>
+                    <ul class="profile-menu">
+                        <li><a href="login-and-registration.html">Login</a></li>
+                        <li><a href="login-and-registration.html#register">Register</a></li>
+                    </ul>
+                </div>
+                <button class="icon-btn wishlist-icon" title="Wishlist" aria-label="Open wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+                <div class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">2</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Issue 7: ARIA for Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <button class="mobile-menu-close" id="mobileClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#featured-products">Shop</a></li>
+            <li><a href="#brand-story">About</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+
+        <div class="mobile-account-section mb-20 pt-20 border-top">
+            <div class="d-flex gap-10 mb-15">
+                <a href="#" class="btn btn-outline-dark flex-1 p-10 fs-14 text-center">Login</a>
+                <a href="#" class="btn btn-primary flex-1 p-10 fs-14 text-center">Register</a>
+            </div>
+        </div>
+        <div class="mobile-social-section mt-auto pt-20 border-top text-center">
+            <div class="d-flex gap-15 justify-center">
+                <a href="#" class="social-icon w-36 h-36 fs-14"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon w-36 h-36 fs-14"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon w-36 h-36 fs-14"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon w-36 h-36 fs-14"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issue 4: Main Landmark Added -->
+    <main id="main-content">
+        <!-- Section 3: Hero Banner -->
+        <section class="hero-banner" id="hero-banner">
+            <div class="slide active"  aria-hidden="true" style="background-image: url('https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/14eb94d3d-5eea-46e3-83b8-0e2bd5221e6e.png');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="slide-tagline">Life Deserves Better.</div>
+                    <!-- Issue 1: H1 only on first slide -->
+                    <h1>Where Focus Meets Freedom</h1>
+                    <p>Crafted with integrity for the spaces where you live, work, and thrive.</p>
+                    <div class="slide-buttons">
+                        <a href="#featured-products" class="btn btn-primary">SHOP NOW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide"  aria-hidden="true" style="background-image: url('https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/14d3ec1b9-e89d-4be0-9bc5-5b30ae883b87.png');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="slide-tagline">The Standard Has a Name.</div>
+                    <!-- Issue 1: Changed to H2 -->
+                    <h2>Discover the Amaanix Standard</h2>
+                    <p>Thoughtfully curated essentials for every dimension of modern living.</p>
+                    <div class="slide-buttons">
+                        <a href="#" class="btn btn-primary">EXPLORE COLLECTIONS</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide"  aria-hidden="true" style="background-image: url('https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/15b29c545-ffae-44e3-8739-3162e4c14190.png');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="slide-tagline">Built Different.</div>
+                    <!-- Issue 1: Changed to H2 -->
+                    <h2>Introducing Our Latest Collection</h2>
+                    <p>Each piece selected with purpose. Every detail refined for excellence.</p>
+                    <div class="slide-buttons">
+                        <a href="#featured-products" class="btn btn-primary">SHOP NOW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide"  aria-hidden="true" style="background-image: url('https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/14b3e8c2a-3d6e-4741-8bd4-7bdc5e657653.png');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="slide-tagline">Do More. Be More.</div>
+                    <!-- Issue 1: Changed to H2 -->
+                    <h2>Conscious Living, Elevated</h2>
+                    <p>Sustainable design that honors both your values and your aesthetic.</p>
+                    <div class="slide-buttons">
+                        <a href="#eco-collection" class="btn btn-primary">DISCOVER ECO LIVING</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-nav">
+                <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+                <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+                <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+            </div>
+        </section>
+
+        <!-- Section 4: Trust Strip -->
+        <section class="trust-strip" id="trust-strip">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fas fa-truck trust-icon"></i>
+                        <div class="trust-title">Free Shipping</div>
+                        <div class="trust-subtitle">On orders over $50</div>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-lock trust-icon"></i>
+                        <div class="trust-title">Secure Payment</div>
+                        <div class="trust-subtitle">100% encrypted & safe</div>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-undo trust-icon"></i>
+                        <div class="trust-title">Easy Returns</div>
+                        <div class="trust-subtitle">30-day hassle-free</div>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-star trust-icon"></i>
+                        <div class="trust-title">Trusted Quality</div>
+                        <div class="trust-subtitle">Integrity in every product</div>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-leaf trust-icon"></i>
+                        <div class="trust-title">Eco Conscious</div>
+                        <div class="trust-subtitle">Sustainable choices</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Featured Products -->
+        <section class="section-padding bg-fafafa" id="featured-products">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Most Loved Collections</h2>
+                </div>
+                <div class="products-grid">
+                    <!-- Issue 16: Replaced inline styles with utility classes -->
+                    <div class="product-card">
+                        <a href="product-detail-page.html" class="block-link">
+                            <div class="product-image-wrapper">
+                                <div class="context-badge">Most Popular</div>
+                                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/10a0f67f2-1643-4ff5-99a0-8724f31bd312.png" alt="Product" class="product-img" width="300" height="300">
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/16175dfc5-9845-4150-acee-284f2fa5da85.png" alt="Product Hover" class="product-img-hover" width="300" height="300">
+                            </div>
+                            <div class="product-info">
+                                <span class="guided-hint">Popular Choice</span>
+                                <h3 class="product-title">Premium Desk Organizer</h3>
+                                <div class="product-rating-count">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span>4.9 (221 reviews)</span>
+                                </div>
+                                <div class="price-container">
+                                    <span class="final-price">$49.99</span>
+                                    <span class="original-price">$65.00</span>
+                                    <span class="discount-badge">23% OFF</span>
+                                </div>
+                                <div class="delivery-info">🚚 Free Shipping</div>
+                            </div>
+                        </a>
+                        <button class="add-to-cart">ADD TO CART</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail-page.html" class="block-link">
+                            <div class="product-image-wrapper">
+                                <div class="context-badge">Customers Love This</div>
+                                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/100446461-e767-45ca-b1a1-c5806b9fec76.png" alt="Product" class="product-img" width="300" height="300">
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1332ce4af-8e7c-4433-a8dd-99f1dd78db87.png" alt="Product Hover" class="product-img-hover" width="300" height="300">
+                            </div>
+                            <div class="product-info">
+                                <span class="guided-hint">Customers love this</span>
+                                <h3 class="product-title">Wireless Charging Pad</h3>
+                                <div class="product-rating-count">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span>4.7 (89 reviews)</span>
+                                </div>
+                                <div class="price-container">
+                                    <span class="final-price">$34.99</span>
+                                </div>
+                                <div class="delivery-info">📦 Delivery in 3–5 days</div>
+                            </div>
+                        </a>
+                        <button class="add-to-cart">ADD TO CART</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail-page.html" class="block-link">
+                            <div class="product-image-wrapper">
+                                <div class="context-badge">Recommended for You</div>
+                                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1451dc398-83fa-4b58-96b2-138fda89c53c.png" alt="Product" class="product-img" width="300" height="300">
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1eefeb707-f890-496a-9f8b-64650f789a84.png" alt="Product Hover" class="product-img-hover" width="300" height="300">
+                            </div>
+                            <div class="product-info">
+                                <span class="guided-hint">Recommended for you</span>
+                                <h3 class="product-title">Wellness Essential Kit</h3>
+                                <div class="product-rating-count">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span>4.8 (156 reviews)</span>
+                                </div>
+                                <div class="price-container">
+                                    <span class="final-price">$59.99</span>
+                                    <span class="original-price">$79.99</span>
+                                    <span class="discount-badge">25% OFF</span>
+                                </div>
+                                <div class="delivery-info">🚚 Free Shipping</div>
+                            </div>
+                        </a>
+                        <button class="add-to-cart">ADD TO CART</button>
+                    </div>
+                    <div class="product-card sold-out">
+                        <a href="#" class="block-link">
+                            <div class="product-image-wrapper">
+                                <div class="context-badge">Limited Stock</div>
+                                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/172b053c4-391c-4f1f-bc2d-ffd1dbf1c175.png" alt="Product" class="product-img" width="300" height="300">
+                                <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/15ddbb9b9-e1f9-42ab-8c08-a645aa6b4639.png" alt="Product Hover" class="product-img-hover" width="300" height="300">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Artisan Kitchen Set</h3>
+                                <div class="product-rating-count">
+                                    <span class="stars">⭐⭐⭐⭐</span>
+                                    <span>4.3 (67 reviews)</span>
+                                </div>
+                                <div class="price-container">
+                                    <span class="final-price">$69.99</span>
+                                    <span class="original-price">$89.99</span>
+                                    <span class="discount-badge">22% OFF</span>
+                                </div>
+                            </div>
+                        </a>
+                        <button class="add-to-cart" disabled>OUT OF STOCK</button>
+                    </div>
+                </div>
+                <div class="text-center mt-40">
+                    <a href="collectionpage.html" class="btn btn-outline-dark">VIEW ALL PRODUCTS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Brand Story -->
+        <section class="section-padding brand-story" id="brand-story">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-image">
+                        <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/104d87014-e269-443b-a4c2-d028c6189471.png" alt="Brand Story" class="full-width object-cover" width="1200" height="600">
+                    </div>
+                    <div class="story-content">
+                        <h4>About Amaanix</h4>
+                        <h2>Built on Trust. Driven by Discipline.</h2>
+                        <!-- Issue 16: Moved inline styles to CSS class -->
+                        <div class="story-text-content">
+                            <p>Amaanix is built to make online shopping <strong class="text-primary-bold">simple</strong>, <strong class="text-primary-bold">seamless</strong>, and <strong class="text-primary-bold">reliable</strong>.</p>
+                            <p>We focus on delivering thoughtfully selected products with a strong commitment to <strong class="text-midnight-bold">quality and trust</strong>.</p>
+                            <p>In a short time, we've earned the confidence of <strong class="text-midnight-bold">thousands of customers</strong> across the United States by keeping everything clear, consistent, and customer-first.</p>
+                            <p class="highlight">"Amaanix understands what you need—and delivers it with care."</p>
+                        </div>
+                        <a href="#featured-products" class="btn btn-primary">SHOP NOW</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Deals Countdown -->
+        <section class="deals-section" id="deals-section">
+            <div class="container">
+                <div class="deals-grid">
+                    <div class="deals-image">
+                        <!-- Issue 16: Removed inline style -->
+                        <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1125e35d7-0790-44aa-976d-913f82c771d7.png" alt="Deal Product" class="full-width object-cover" width="1200" height="600">
+                    </div>
+                    <div class="deals-content">
+                        <h2>🔥 DEAL OF THE WEEK</h2>
+                        <h3 class="deals-product-title">Smart Home Speaker</h3>
+                        <div class="deals-price">
+                            <span class="deals-old-price">$99.00</span> $59.00
+                        </div>
+                        <p>Voice-controlled assistant with premium sound quality. Limited stock available.</p>
+                        <div class="countdown" id="countdown">
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="days">02</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="hours">14</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="minutes">33</div>
+                                <div class="countdown-label">Mins</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="seconds">07</div>
+                                <div class="countdown-label">Secs</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">GRAB THE DEAL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Testimonials -->
+        <section class="section-padding" id="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>WHAT OUR CUSTOMERS SAY</h2>
+                    <p>Real experiences from real people — trust speaks for itself</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"The quality of products from Amaanix is unmatched. I've redecorated my entire home office with their items and couldn't be happier."</p>
+                        <div class="testimonial-author">
+                            <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/14eb94d3d-5eea-46e3-83b8-0e2bd5221e6e.png" alt="Sarah Jenkins" class="author-avatar"  width="60" height="60">
+                            <div class="author-info">
+                                <h5>Sarah Jenkins</h5>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Fast shipping and excellent customer service. The eco-friendly products are exactly what I was looking for. Highly recommend!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/104d87014-e269-443b-a4c2-d028c6189471.png" alt="Michael Chen" class="author-avatar"  width="60" height="60">
+                            <div class="author-info">
+                                <h5>Michael Chen</h5>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text">"Love the aesthetic and functionality. The kitchen tools are beautiful and durable. Will definitely be shopping here again."</p>
+                        <div class="testimonial-author">
+                            <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1eefeb707-f890-496a-9f8b-64650f789a84.png" alt="Emily Rodriguez" class="author-avatar"  width="60" height="60">
+                            <div class="author-info">
+                                <h5>Emily Rodriguez</h5>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12: Blog Posts -->
+        <section class="section-padding" id="blog-section"  class="bg-light-gray">
+            <div class="container">
+                <div class="section-header">
+                    <h2>FROM THE AMAANIX JOURNAL</h2>
+                    <p>Insights, guides & inspiration for a focused life</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1f195e9bd-bbad-40b7-9b94-8f14a7c8948d.png" alt="Blog 1" class="blog-image" width="800" height="400">
+                        <div class="blog-content">
+                            <span class="blog-category">Productivity</span>
+                            <h3 class="blog-title">10 Office Products That Boost Focus & Productivity</h3>
+                            <p class="blog-excerpt">Discover the essential tools that can transform your workspace and enhance your daily workflow...</p>
+                            <div class="blog-meta">June 15, 2025</div>
+                            <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1db644ff9-912b-4754-b253-28a0b6799c56.png" alt="Blog 2" class="blog-image" width="800" height="400">
+                        <div class="blog-content">
+                            <span class="blog-category">Eco Living</span>
+                            <h3 class="blog-title">Why Eco-Friendly Home Products Matter in 2025</h3>
+                            <p class="blog-excerpt">Learn about the impact of sustainable choices and how small changes can make a big difference...</p>
+                            <div class="blog-meta">June 10, 2025</div>
+                            <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/15ddbb9b9-e1f9-42ab-8c08-a645aa6b4639.png" alt="Blog 3" class="blog-image" width="800" height="400">
+                        <div class="blog-content">
+                            <span class="blog-category">Wellness</span>
+                            <h3 class="blog-title">The Amaanix Guide to Kitchen Organization</h3>
+                            <p class="blog-excerpt">Tips and tricks to keep your kitchen tidy, functional, and inspiring for your culinary adventures...</p>
+                            <div class="blog-meta">June 05, 2025</div>
+                            <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Issue 16: Replaced inline styles with utilities -->
+                <div class="text-center mt-40">
+                    <a href="#" class="btn btn-outline-dark">VIEW ALL POSTS</a>
+                </div>
+            </div>
+        </section>
+    </main> <!-- End Main Landmark -->
+
+    <!-- Footer Sections Wrapper -->
+    <div class="footer-sections-wrapper">
+        <section class="brand-logos-section" id="brand-logos-section">
+            <div class="container">
+                <div class="logos-marquee">
+                    <div class="logos-track">
+                        <div class="logo-placeholder">VOGUE</div>
+                        <div class="logo-placeholder">FORBES</div>
+                        <div class="logo-placeholder">WIRED</div>
+                        <div class="logo-placeholder">ELLE DECOR</div>
+                        <div class="logo-placeholder">GQ</div>
+                        <div class="logo-placeholder">VOGUE</div>
+                        <div class="logo-placeholder">FORBES</div>
+                        <div class="logo-placeholder">WIRED</div>
+                        <div class="logo-placeholder">ELLE DECOR</div>
+                        <div class="logo-placeholder">GQ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer" id="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <a href="#" class="footer-logo">AMAANIX</a>
+                        <p class="footer-tagline"><strong>The Standard Has a Name.</strong><br>Trustworthy products built on integrity & sincerity for your home, office & life.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3 class="footer-accordion-header">Support <span class="footer-accordion-icon"><i class="fas fa-plus"></i></span></h3>
+                        <ul class="footer-links footer-accordion-content">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Track Order</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 class="footer-accordion-header">Amaanix <span class="footer-accordion-icon"><i class="fas fa-plus"></i></span></h3>
+                        <ul class="footer-links footer-accordion-content">
+                            <li><a href="collectionpage.html">Collections</a></li>
+                            <li><a href="#brand-story">About</a></li>
+                            <li><a href="#">Welcome Discount</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">© 2026 Amaanix. All Rights Reserved.</div>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                        <i class="fab fa-cc-shopify"></i>
+                    </div>
+                    <div class="policy-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    
+
+    <!-- Issue 7: ARIA for Wishlist Drawer -->
+    <div class="wishlist-drawer-overlay" id="wishlistDrawerOverlay"></div>
+    <div class="wishlist-drawer" id="wishlistDrawer" role="dialog" aria-modal="true" aria-label="Wishlist">
+        <div class="wishlist-drawer-header">
+            <h3>My Wishlist</h3>
+            <button class="wishlist-drawer-close" aria-label="Close wishlist">&times;</button>
+        </div>
+        <div class="wishlist-drawer-body">
+            <div class="wishlist-guest-prompt" id="wishlistGuestPrompt" >
+                <i class="fas fa-heart"></i>
+                <span>Save your wishlist permanently! <a href="login-and-registration.html">Sign up now</a></span>
+                <button class="close-prompt">&times;</button>
+            </div>
+            <div class="wishlist-summary" id="wishlistSummary">
+                <div class="wishlist-summary-row">
+                    <span class="wishlist-total-label">Subtotal (<span id="wishlistItemCount">3</span> items)</span>
+                    <span class="wishlist-total-price" id="wishlistSubtotal">$144.97</span>
+                </div>
+                <div class="wishlist-summary-row">
+                    <span class="wishlist-total-label">Total</span>
+                    <span class="wishlist-total-price" id="wishlistTotal">$144.97</span>
+                </div>
+            </div>
+            <div id="wishlistItemsContainer">
+                <div class="wishlist-item" data-id="1" data-price="49.99">
+                    <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/10a0f67f2-1643-4ff5-99a0-8724f31bd312.png" alt="Premium Desk Organizer" class="wishlist-item-image" width="100" height="100">
+                    <div class="wishlist-item-info">
+                        <div class="wishlist-item-name">Premium Desk Organizer</div>
+                        <div class="wishlist-item-price">$49.99</div>
+                        <div class="wishlist-quantity">
+                            <button class="quantity-btn">−</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="wishlist-item-actions">
+                            <button class="wishlist-add-cart">Add to Cart</button>
+                            <button class="wishlist-remove">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wishlist-item" data-id="2" data-price="34.99">
+                    <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/100446461-e767-45ca-b1a1-c5806b9fec76.png" alt="Wireless Charging Pad" class="wishlist-item-image" width="100" height="100">
+                    <div class="wishlist-item-info">
+                        <div class="wishlist-item-name">Wireless Charging Pad</div>
+                        <div class="wishlist-item-price">$34.99</div>
+                        <div class="wishlist-quantity">
+                            <button class="quantity-btn">−</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="wishlist-item-actions">
+                            <button class="wishlist-add-cart">Add to Cart</button>
+                            <button class="wishlist-remove">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wishlist-item" data-id="3" data-price="59.99">
+                    <img src="https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1451dc398-83fa-4b58-96b2-138fda89c53c.png" alt="Wellness Essential Kit" class="wishlist-item-image" width="100" height="100">
+                    <div class="wishlist-item-info">
+                        <div class="wishlist-item-name">Wellness Essential Kit</div>
+                        <div class="wishlist-item-price">$59.99</div>
+                        <div class="wishlist-quantity">
+                            <button class="quantity-btn">−</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="wishlist-item-actions">
+                            <button class="wishlist-add-cart">Add to Cart</button>
+                            <button class="wishlist-remove">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wishlist-drawer-footer">
+            <button class="wishlist-add-all" id="wishlistAddAllBtn">Add All to Cart</button>
+            <a href="collectionpage.html" class="btn btn-outline-dark"  class="full-width-btn">View All Products</a>
+        </div>
+    </div>
+
+    <!-- Issue 7: ARIA for Search Overlay -->
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search products">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <label for="searchInput" class="sr-only">Search products</label>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search products, brands…" autocomplete="off">
+                <button class="search-icon-btn" id="searchSubmit"><i class="fas fa-search"></i></button>
+                <button class="search-clear-btn" id="searchClear">✕</button>
+            </div>
+            <div class="search-placeholder-rotator" id="searchPlaceholder"></div>
+            <div class="search-suggestions" id="searchSuggestions">
+                <span class="search-label">Trending Searches</span>
+                <div class="search-chips">
+                    <span class="search-chip" data-query="watches">watches</span>
+                    <span class="search-chip" data-query="earbuds">earbuds</span>
+                    <span class="search-chip" data-query="desk organizer">desk organizer</span>
+                    <span class="search-chip" data-query="wellness kit">wellness kit</span>
+                    <span class="search-chip" data-query="eco living">eco living</span>
+                </div>
+            </div>
+            <div class="search-recent" id="searchRecent">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="search-label">Recent Searches</span>
+                    <span class="clear-recent-link" id="clearRecent">Clear All</span>
+                </div>
+                <ul class="search-recent-list" id="recentList"></ul>
+            </div>
+            <div class="search-results-preview" id="searchResults" style="display: none;"></div>
+            <div class="no-results-message" id="noResults" style="display: none;">
+                <strong>No results found.</strong><br>
+                Try another search or browse our <a href="collectionpage.html"  class="link-primary">collections</a>.
+            </div>
+            <div class="search-loading" id="searchLoading" style="display: none;">
+                <div class="search-spinner"></div>
+                <span>Searching...</span>
+            </div>
+            <a href="collectionpage.html" class="view-all-results" id="viewAllResults">View All Results →</a>
+        </div>
+    </div>
+
+    
+    <script src="main.js" defer></script>
+</body>
+</html>
