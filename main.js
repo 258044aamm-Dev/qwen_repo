@@ -2,6 +2,13 @@
 // Extracted and consolidated from index.html
 // Handles: UI interactions, accessibility, state management, animations
 
+// Initialize Lucide icons after DOM load
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+
 // === Script Block 1 ===
 // Issue 6: Toast Notification System
         function showToast(message) {
