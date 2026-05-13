@@ -303,11 +303,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Issue 2: Fixed Search Filter Logic
             function performSearch(query) {
                 const mockProducts = [
-                    { name: 'Premium Desk Organizer', price: '$49.99', image: 'https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/10a0f67f2-1643-4ff5-99a0-8724f31bd312.png', url: 'product-detail-page.html' },
-                    { name: 'Wireless Charging Pad', price: '$34.99', image: 'https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/100446461-e767-45ca-b1a1-c5806b9fec76.png', url: 'product-detail-page.html' },
-                    { name: 'Wellness Essential Kit', price: '$59.99', image: 'https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1451dc398-83fa-4b58-96b2-138fda89c53c.png', url: 'product-detail-page.html' },
-                    { name: 'Probiotic Capsules', price: '$34.00', image: 'https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1f195e9bd-bbad-40b7-9b94-8f14a7c8948d.png', url: 'product-detail-page.html' },
-                    { name: 'Collagen Powder', price: '$42.00', image: 'https://image.qwenlm.ai/public_source/0a0ec1e0-e3a4-455f-9213-497e67bf10c4/1db644ff9-912b-4754-b253-28a0b6799c56.png', url: 'product-detail-page.html' }
+                    { name: 'Premium Desk Organizer', price: '$49.99', image: 'assets/images/10a0f67f2-1643-4ff5-99a0-8724f31bd312.png', url: 'product-detail-page.html' },
+                    { name: 'Wireless Charging Pad', price: '$34.99', image: 'assets/images/100446461-e767-45ca-b1a1-c5806b9fec76.png', url: 'product-detail-page.html' },
+                    { name: 'Wellness Essential Kit', price: '$59.99', image: 'assets/images/1451dc398-83fa-4b58-96b2-138fda89c53c.png', url: 'product-detail-page.html' },
+                    { name: 'Probiotic Capsules', price: '$34.00', image: 'assets/images/1f195e9bd-bbad-40b7-9b94-8f14a7c8948d.png', url: 'product-detail-page.html' },
+                    { name: 'Collagen Powder', price: '$42.00', image: 'assets/images/1db644ff9-912b-4754-b253-28a0b6799c56.png', url: 'product-detail-page.html' }
                 ];
                 clearTimeout(typingTimeout);
                 typingTimeout = setTimeout(() => {
